@@ -1,4 +1,4 @@
-import { userMessages } from "../messages";
+import { userMessages } from "../messages"
 
 import { crud_handling } from "../CRUD_services";
 

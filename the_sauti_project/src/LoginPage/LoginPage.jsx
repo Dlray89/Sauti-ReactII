@@ -46,16 +46,17 @@ class LoginPage extends React.Component{
         const { username, password, submitted } = this.state;
         return(
             <div className="container">
+            <div >
                
                 <form onSubmit={this.handleSubmit}>
-                <Card style={{border: "solid 2px red", width: "30%", textAlign: "center", margin: " 0 auto", marginTop: "10%"}}>
-                 <h2>Login</h2>
+                <Card style={{background: "linear-gradient(to left, #bdc3c7, #2c3e50)",borderRadius:"30px", border: "solid 2px #6f0000", width: "30%", textAlign: "center", margin: " 0 auto", marginTop: "5%"}}>
+                 
                     <CardContent>
 
-                 
+                 <h2>Login</h2>
                 <div className={ "form-group" + (submitted && !username ? " has error" : ''  )}>
                     
-                    <TextField type="text" label="username" name="username" value={username} onChange={this.handleChange} />
+                    <TextField style={{color: "white", textAlign: "center"}} type="text" label="username" name="username" value={username} onChange={this.handleChange} />
                     {submitted && !username && 
                     <div> username is requires</div>
                     }
@@ -66,20 +67,22 @@ class LoginPage extends React.Component{
                         {submitted && !password &&
                         <div> password is required</div>
                         }
-                </div>
-                </CardContent>
-                </Card>
-                <div  style={{border: "solid 2px red", width: "30%", textAlign: "center", margin: " 0 auto"}}>
-                <Button type="submit" color="primary" >
+                        <div  style={{width: "60%", textAlign: "center", margin: " 4% auto"}}>
+                <Button style={{color: "white"}} type="submit" color="primary" >
               LOGIN
             </Button>
             <br />
             
                     {loggingIn}
-                    <Button ><Link to="/register">Dont have an account yet? Register Here</Link></Button>
+                    <Button ><Link style={{color: "#6f0000"}} to="/register">Dont have an account yet? Register Here</Link></Button>
                 </div>
+                </div>
+                </CardContent>
+                </Card>
+               
 
                 </form>
+            </div>
             </div>
         )
     }

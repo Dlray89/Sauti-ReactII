@@ -56,11 +56,12 @@ class Register extends React.Component {
 
         return(
                 <div>
-                    <h2>Register</h2>
+                    
                     <form onSubmit={this.handleSubmit}>
-                    <Card>
+                    <Card style={{background: "linear-gradient(to left, #bdc3c7, #2c3e50)",borderRadius:"30px", border: "solid 2px #6f0000", width: "30%", textAlign: "center", margin: " 0 auto", marginTop: "5%"}}>
+                   
                         <CardContent>
-                      
+                       <h2>Register</h2>
                     
                         <div className={ "form-group" + ( submitted && !user.userName? "has error" : '')}>
                            
@@ -68,7 +69,7 @@ class Register extends React.Component {
                             id="userName"
                             type="text" 
                             name="userName"
-                            label="Username"
+                            label="Create a Username"
                             className="form-control"
                             value={user.userName}
                             onChange={this.handleChange}
@@ -82,7 +83,7 @@ class Register extends React.Component {
                             <TextField
                             id="password"
                             type="password" 
-                            label="Password"
+                            label="Create a Password"
                             name="password"
                             className="form-control"
                             value={user.password}
@@ -91,16 +92,17 @@ class Register extends React.Component {
                             { submitted && !user.password &&
                             <div> password is Required</div> 
                             }
-                        </div>  
-                        </CardContent>
-                    </Card>
-                        <div>
+                        </div> 
+                        <div  style={{width: "60%", textAlign: "center", margin: " 4% auto"}}>
                          
                       
                             <Button>Submit</Button>
                            {registering}
-                        <Button><Link to="/login"> Cancel</Link></Button>
-                        </div>
+                        <Button><Link style={{color:"#6f0000"}} to="/login"> Cancel</Link></Button>
+                        </div> 
+                        </CardContent>
+                    </Card>
+                        
                     </form>
                 </div>
 

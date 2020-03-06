@@ -26,8 +26,9 @@ const ProductsList = () => {
         <Button><Link to="/prices">prices</Link></Button>
         <Button><Link to="/listings">Add Products</Link></Button>
     
-        <h1 style={{textAlign:"center"}}>Welcome to your Dashboard</h1>
+        <h1 style={{textAlign:"center", margin: "0 0 5% 0", fontSize:"20px"}}>Welcome to your Dashboard</h1>
         <PostItems />
+            <h2 style={{textAlign:"center", margin: "0 0 2% 0", fontSize:"20px", color:"black"}}>Product</h2>
 
             <Grid style={{border: "solid 2px black", padding: "3%", borderRadius: "20px"}} justify='center' container>
                 { itemsList.map(item => (
