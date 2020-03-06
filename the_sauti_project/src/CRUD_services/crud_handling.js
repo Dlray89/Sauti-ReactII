@@ -34,7 +34,7 @@ function login(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch("http://africanmarketplace.ddns.net:5000/api/auth/login", requestOptions)
+    return fetch("https://africanmarketplace.ddns.net:5000/api/auth/login", requestOptions)
     .then(handleResponse)
     .then(user => {
         localStorage.setItem("user", JSON.stringify({user, password}))
@@ -52,7 +52,7 @@ function getAll(){
         haerders: authHeader()
     };
 
-    return fetch("http://africanmarketplace.ddns.net:5000/api/listings", requestOptions )
+    return fetch("https://africanmarketplace.ddns.net:5000/api/listings", requestOptions )
     .then(handleResponse)
 }
 
@@ -61,7 +61,7 @@ function getById(id) {
         method: "GET",
         headers: authHeader()
     };
-    return fetch(`http://africanmarketplace.ddns.net:5000/api/users/${id}`, requestOptions)
+    return fetch(`https://africanmarketplace.ddns.net:5000/api/users/${id}`, requestOptions)
     .then(handleResponse)
     
   
@@ -73,7 +73,7 @@ function register(users) {
         headers: { "Content-Type" : "application/json" },
         body: JSON.stringify(users)
     }
-    return fetch("http://africanmarketplace.ddns.net:5000/api/auth/register", requestOptions, )
+    return fetch("https://africanmarketplace.ddns.net:5000/api/auth/register", requestOptions, )
     .then(handleResponse)
     .then( user => {
         console.log("Registration",user)
@@ -86,7 +86,7 @@ function update(user) {
         headers: { ...authHeader(), "Content-Type": "application/json" },
         body: JSON.stringify(user)
     }
-    return fetch(`http://africanmarketplace.ddns.net:5000/api/users/${user.id}/listings/${user.id}`, requestOptions).then(handleResponse);
+    return fetch(`https://africanmarketplace.ddns.net:5000/api/users/${user.id}/listings/${user.id}`, requestOptions).then(handleResponse);
 }
 
 function _delete(id){
@@ -94,7 +94,7 @@ function _delete(id){
         method: "DELETE",
         headers: authHeader()
     };
-    return fetch("http://africanmarketplace.ddns.net:5000", requestOptions).then(handleResponse)
+    return fetch("https://africanmarketplace.ddns.net:5000", requestOptions).then(handleResponse)
 
 
 }
