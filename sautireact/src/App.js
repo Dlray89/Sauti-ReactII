@@ -1,61 +1,64 @@
-import React from 'react';
-import './App.css';
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import { FormControl } from '@material-ui/core';
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import Button from "@material-ui/core/Button";
+import React from "react";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { history } from "./utils/";
+import { alertInfo } from "./actions";
+import { PrivateRoute } from "./components/PrivateRoute";
+import { LoginPage } from "./LoginPage";
+
+import { Register } from "./Register";
+
+import PriceList from "./components/PriceList" 
+import ProductsList from "./components/ProductsList";
 
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  },
-  '& > *': {
-    margin: theme.spacing(1),
-    width: 200,
-  },
-}));
 
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    
+    history.listen((location, action) => {
+      this.props.clearAlerts()
+    })
+  }
+  render() {
 
-function Login() {
-  const classes = useStyles();
-
-  return (
-    <div className="container">
-      <Grid
-        container spacing={3}>
-        <Grid item xs={12}>
-          <Paper style={{background: "white", color: "black", width: "25%", margin: "15% auto"}} className={classes.paper}>
-            <FormControl>
-              <InputLabel htmlFor="username">UserName</InputLabel>
-              <Input id="userName" aria-describedby="my-helper-text" />
-              <FormHelperText id="my-helper-text">Example</FormHelperText>
-            </FormControl>
-            <br />
-            <FormControl>
-              <InputLabel htmlFor="password">Password</InputLabel>
-              <Input id="Password" aria-describedby="my-helper-text" />
-              <FormHelperText id="my-helper-text">Example</FormHelperText>
-            </FormControl>
-            <br />
-            <Button style={{background: "linear-gradient(to bottom, #1e130c, #9a8478)"}} type="submit" variant="contained" color="secondary">Login</Button>
-            </Paper>
-        </Grid>
-
-      </Grid>
-
-
-    </div>
-  );
+    const { alert } = this.props;
+    return (
+        <div className="jumbotron">
+            <div className="container">
+                <div className="col-sm-8 col-sm-offset-2">
+                    {alert.message &&
+                        <div className={`alert ${alert.type}`}>{alert.message}</div>
+                    }
+                    <Router history={history}>
+                     
+                        <Switch>
+                          
+                            <PrivateRoute exact path="/" component={ProductsList} />
+                            <PrivateRoute exact path="/prices" component={PriceList} />
+                            <Route path="/login" component={LoginPage} />
+                            <Route path="/register" component={Register} />
+                            <Redirect from="*" to="/" component={ProductsList} />
+                        </Switch>
+                    </Router>
+                </div>
+            </div>
+        </div>
+    );
 }
 
-export default Login;
+}
+
+                function mapState(state) {
+                  const { alert } = state;
+                  return { alert };
+              }
+              
+              const actionCreators = {
+                  clearAlerts: alertInfo.clear
+              };
+              
+              const connectedApp = connect(mapState, actionCreators)(App);
+              export { connectedApp as App };
+  
