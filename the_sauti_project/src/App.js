@@ -10,6 +10,7 @@ import { Register } from "./Register";
 
 import PriceList from "./components/PriceList" 
 import ProductsList from "./components/ProductsList";
+import ListingItems from "./components/ListingItem";
 
 
 
@@ -37,6 +38,7 @@ class App extends React.Component {
                           
                             <PrivateRoute exact path="/" component={ProductsList} />
                             <PrivateRoute exact path="/prices" component={PriceList} />
+                            <PrivateRoute exact path="/listings" component={ListingItems} />
                             <Route path="/login" component={LoginPage} />
                             <Route path="/register" component={Register} />
                             <Redirect from="*" to="/" component={ProductsList} />
